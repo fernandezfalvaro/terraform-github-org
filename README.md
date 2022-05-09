@@ -1,2 +1,1 @@
-# terraform-github-org
-Managing Github Organization with TF
+# Manage Github Organization with Terraform
