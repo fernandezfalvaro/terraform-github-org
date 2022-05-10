@@ -1,1 +1,1 @@
-# Manage Github Organization with Terraform
+# Manage Github with Terraform
