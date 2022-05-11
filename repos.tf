@@ -17,6 +17,14 @@ resource "github_repository_file" "terraform_github_readme" {
   commit_email        = "terraform@example.com"
   overwrite_on_create = true
 
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      content,
+    ]
+  }
+
 }
 
 resource "github_branch_protection" "terraform_github_main" {
@@ -31,4 +39,13 @@ resource "github_branch_protection" "terraform_github_main" {
   }
 
   depends_on = [github_repository_file.terraform_github_readme]
+
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      required_pull_request_reviews["required_approving_review_count"],
+    ]
+  }
+
 }
