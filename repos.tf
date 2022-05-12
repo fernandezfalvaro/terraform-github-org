@@ -44,7 +44,7 @@ resource "github_branch_protection" "terraform_github_main" {
     ignore_changes = [
       # Ignore changes to tags, e.g. because a management agent
       # updates these based on some ruleset managed elsewhere.
-      required_pull_request_reviews["required_approving_review_count"],
+      required_pull_request_reviews,
     ]
   }
 
